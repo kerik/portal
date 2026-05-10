@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Вход — Портал посещаемости</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1>Вход</h1>
+      </div>
+      <nav>
+        <a class="nav-link" href="/">Главная</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>Вход</h2>
+      <% if (error) { %>
+        <div class="flash error"><%= error %></div>
+      <% } %>
+      <form method="post">
+        <label>Телефон<br><input type="tel" name="phone" required></label>
+        <label>Пароль<br><input type="password" name="password" required></label>
+        <div class="form-actions">
+          <button type="submit">Войти</button>
+          <a class="button button-secondary" href="/">На главную</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

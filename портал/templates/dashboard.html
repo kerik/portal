@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Панель — Портал посещаемости</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1>Панель старосты</h1>
+      </div>
+      <nav>
+        <a class="nav-link" href="/attendance">Отметить посещаемость</a>
+        <a class="nav-link" href="/export">Скачать Excel</a>
+        <a class="nav-link" href="/logout">Выйти</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>Информация о группе</h2>
+      <p><strong>Староста:</strong> <%= user.name %></p>
+      <p><strong>Телефон:</strong> <%= user.phone %></p>
+      <p><strong>Группа:</strong> <%= group.name %></p>
+      <p><strong>Куратор:</strong> <%= group.curator %></p>
+    </section>
+    <section>
+      <h2>Список учащихся</h2>
+      <ul>
+        <% members.forEach((member) => { %>
+          <li><%= member.name %></li>
+        <% }); %>
+      </ul>
+    </section>
+    <section>
+      <h2>История посещаемости</h2>
+      <% if (attendanceDates.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Ученик</th>
+              <% attendanceDates.forEach((date) => { %>
+                <th><%= date %></th>
+              <% }); %>
+            </tr>
+          </thead>
+          <tbody>
+            <% members.forEach((member) => { %>
+              <tr>
+                <td><%= member.name %></td>
+                <% member.attendance.forEach((value) => { %>
+                  <td><%= value ? '✔' : '❌' %></td>
+                <% }); %>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <p>Еще нет отмеченной посещаемости.</p>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>

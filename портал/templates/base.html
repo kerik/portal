@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title><%= title || 'Портал посещаемости' %></title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1><a href="/">Портал посещаемости</a></h1>
+        <p>Сервис для старосты: регистрация, управление группой, отметка посещаемости и отчет в Excel.</p>
+      </div>
+      <nav>
+        <a class="nav-link" href="/">Главная</a>
+        <% if (currentUser) { %>
+          <a class="nav-link" href="/dashboard">Панель</a>
+          <a class="nav-link" href="/attendance">Посещаемость</a>
+          <a class="nav-link" href="/logout">Выйти</a>
+        <% } else { %>
+          <a class="nav-link" href="/register">Регистрация</a>
+          <a class="nav-link" href="/login">Вход</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <% if (error) { %>
+      <div class="flash error"><%= error %></div>
+    <% } %>
+    <% if (success) { %>
+      <div class="flash success"><%= success %></div>
+    <% } %>
+    <%- body %>
+  </main>
+</body>
+</html>

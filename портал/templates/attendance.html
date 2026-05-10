@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Отметка посещаемости — Портал посещаемости</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1>Отметка посещаемости</h1>
+      </div>
+      <nav>
+        <a class="nav-link" href="/dashboard">Панель</a>
+        <a class="nav-link" href="/logout">Выйти</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section>
+      <p>Группа: <strong><%= group.name %></strong></p>
+      <p>Дата: <strong><%= today %></strong></p>
+    </section>
+    <form method="post">
+      <table>
+        <thead>
+          <tr>
+            <th>Ученик</th>
+            <th>Присутствует</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% members.forEach((member) => { %>
+            <tr>
+              <td><%= member.name %></td>
+              <td>
+                <input
+                  type="checkbox"
+                  name="member_<%= member.id %>"
+                  <%= attendanceMap[member.id] ? 'checked' : '' %>
+                >
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <div class="form-actions">
+        <button type="submit">Сохранить посещаемость</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
